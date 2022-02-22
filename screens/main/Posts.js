@@ -1,34 +1,20 @@
-import { useState, useEffect } from "react";
-import { Text, View, FlatList, Image } from "react-native";
+import { View } from "react-native";
+
+import { createStackNavigator } from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
+
+import Default from "../nested/Default";
+import Map from "../nested/Map";
+import Comments from "../nested/Comments";
 
 const Posts = ({ route }) => {
-  const [posts, setPosts] = useState([]);
-  // console.log("route.params", route.params);
-
-  // useEffect(() => {
-  // if (route.params) {
-  //   setPosts((prev) => [...prev, route.params]);
-  // }
-  // }, [route.params]);
-
-  // console.log("posts", posts);
-
   return (
-    <View>
-      <Text>PostsScreen</Text>
-      <FlatList
-        data={posts}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => {
-          <View style={{ marginBottom: 20, alignItems: "center" }}>
-            <Image
-              source={{ uri: item.photo }}
-              style={{ marginHorizontal: 15, height: 100 }}
-            />
-          </View>;
-        }}
-      />
-    </View>
+      <Stack.Navigator>
+        <Stack.Screen name="Default" component={Default} />
+        <Stack.Screen name="Map" component={Map} />
+        <Stack.Screen name="Comments" component={Comments} />
+      </Stack.Navigator>
   );
 };
 

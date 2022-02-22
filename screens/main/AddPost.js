@@ -20,11 +20,7 @@ const AddPost = ({ navigation }) => {
 
   const sendPhoto = () => {
     console.log("navigation", navigation);
-    navigation.navigate("Posts", { photo });
-  };
-
-  const openMap = () => {
-    navigation.navigate("Map");
+    navigation.navigate("Default", { photo });
   };
 
   useEffect(() => {
@@ -37,6 +33,7 @@ const AddPost = ({ navigation }) => {
   }, []);
 
   return (
+    <>
     <View style={{ flex: 1 }}>
       <Camera style={styles.camera} ref={setCamera}>
         {/* {photo && (
@@ -66,12 +63,9 @@ const AddPost = ({ navigation }) => {
           /> */}
           <Text style={styles.sendBtnText}>Send</Text>
         </TouchableOpacity>
-        {/* MAP BUTTON */}
-        <TouchableOpacity style={styles.sendDtn} onPress={openMap}>
-          <Text style={styles.sendBtnText}>Map</Text>
-        </TouchableOpacity>
       </View>
     </View>
+    </>
   );
 };
 

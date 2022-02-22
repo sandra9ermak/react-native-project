@@ -58,13 +58,12 @@ export default function Registration({ navigation }) {
           <View
             style={{
               ...styles.form,
-              marginBottom: showKeyboard ? -50 : 50,
+              marginBottom: showKeyboard ? -200 : -200,
               width: dimensions,
             }}
           >
             <Text style={styles.mainTitle}>Sign Up Your Account</Text>
             <View style={{ marginBottom: 20 }}>
-              <Text style={styles.inputTitle}>UserName</Text>
               <TextInput
                 style={styles.input}
                 onFocus={() => {
@@ -72,10 +71,11 @@ export default function Registration({ navigation }) {
                 }}
                 value={userName}
                 onChangeText={(value) => setUserName(value)}
+                placeholder="USERNAME"
+                placeholderTextColor="#DCDCDW"
               />
             </View>
             <View style={{ marginBottom: 20 }}>
-              <Text style={styles.inputTitle}>Email</Text>
               <TextInput
                 style={styles.input}
                 onFocus={() => {
@@ -83,10 +83,11 @@ export default function Registration({ navigation }) {
                 }}
                 value={email}
                 onChangeText={(value) => setEmail(value)}
+                placeholder="EMAIL"
+                placeholderTextColor="#DCDCDW"
               />
             </View>
             <View>
-              <Text style={styles.inputTitle}>Password</Text>
               <TextInput
                 style={styles.input}
                 secureTextEntry={true}
@@ -95,6 +96,8 @@ export default function Registration({ navigation }) {
                 }}
                 value={password}
                 onChangeText={(value) => setPassword(value)}
+                placeholder="PASSWORD"
+                placeholderTextColor="#DCDCDW"
               />
             </View>
             <TouchableOpacity
@@ -126,7 +129,7 @@ export default function Registration({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "#6E6969",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -134,31 +137,44 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
+    alignItems: "center",
+  },
+  titleContainer: {
+    flex: 1,
+  },
+  mainTitle: {
+    // flex: 1,
+    color: "#464A4B",
+    fontWeight: "700",
+    fontSize: 32,
+    // paddingLeft: 10,
+    letterSpacing: 1.5,
+    marginTop: 20,
+    marginBottom: 50,
+    textAlign: "center"
   },
   form: {
     alignItems: "center",
-    marginTop: 20,
-  },
-  mainTitle: {
-    color: "#FEE774",
-    fontWeight: "700",
-    fontSize: 28,
-    paddingLeft: 10,
-    letterSpacing: 1.5,
-    marginBottom: 50,
+    backgroundColor: "#fff",
+    borderRadius: 50,
+    height: 700,
+    position: "relative",
+    marginTop: 300,
+    paddingTop: 30,
+    paddingHorizontal: 65
   },
   input: {
     borderWidth: 2,
-    borderColor: "#fff",
+    borderColor: "#DCDCDC",
     width: 250,
     borderRadius: 50,
-    color: "#fff",
+    color: "#464A4B",
     fontWeight: "700",
     textAlign: "center",
     height: 40,
   },
   inputTitle: {
-    color: "#fff",
+    color: "#000",
     fontWeight: "700",
     fontSize: 17,
     paddingLeft: 10,
@@ -166,13 +182,11 @@ const styles = StyleSheet.create({
     // fontFamily: "Lora-Medium",
   },
   button: {
-    backgroundColor: "#FEE774",
-    height: 50,
-    width: 120,
+    backgroundColor: "#B53533",
+    height: 45,
+    width: 150,
     borderRadius: 50,
-    marginTop: 20,
-    borderColor: "#fff",
-    borderWidth: 1,
+    marginTop: 30,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -181,5 +195,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: 1.5,
     textTransform: "uppercase",
+    color: "#fff",
   },
 });
