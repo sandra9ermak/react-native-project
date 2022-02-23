@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   StyleSheet,
   Text,
@@ -14,6 +15,8 @@ import {
   Button,
 } from "react-native";
 
+// import { userRegister  } from "../../redux/auth/authOperations";
+
 export default function Registration({ navigation }) {
   const [showKeyboard, setShowKeyboard] = useState(false);
   const [userName, setUserName] = useState("");
@@ -21,6 +24,7 @@ export default function Registration({ navigation }) {
   const [password, setPassword] = useState("");
   const [dimensions, setDimensions] = useState(phoneWidth);
   const phoneWidth = Dimensions.get("window").width - 20 * 2;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const onChange = () => {
@@ -41,6 +45,7 @@ export default function Registration({ navigation }) {
     setEmail("");
     setPassword("");
     setUserName("");
+    // dispatch(userRegister({userName, email, password}))
   };
 
   const hidenKeyboardWithoutFeedback = () => {
