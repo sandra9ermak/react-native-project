@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     paddingLeft: 10,
     letterSpacing: 1.5,
-    // fontFamily: "Lora-Medium",
+    fontFamily: "Lora-Medium",
   },
   button: {
     backgroundColor: "#B53533",

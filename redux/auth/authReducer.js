@@ -6,7 +6,7 @@ export const authSlice = createSlice({
     userId: "null",
     userName: "null",
   },
-  // reducers: {
+  reducers: {
 
-  // }
+  }
 });

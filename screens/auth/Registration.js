@@ -15,7 +15,7 @@ import {
   Button,
 } from "react-native";
 
-// import { userRegister  } from "../../redux/auth/authOperations";
+import { userRegister  } from "../../redux/auth/authOperations";
 
 export default function Registration({ navigation }) {
   const [showKeyboard, setShowKeyboard] = useState(false);
@@ -45,7 +45,7 @@ export default function Registration({ navigation }) {
     setEmail("");
     setPassword("");
     setUserName("");
-    // dispatch(userRegister({userName, email, password}))
+    dispatch(userRegister(userName, email, password))
   };
 
   const hidenKeyboardWithoutFeedback = () => {

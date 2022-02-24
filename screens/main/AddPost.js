@@ -9,34 +9,62 @@ const AddPost = ({ navigation }) => {
   const [photo, setPhoto] = useState(null);
   const [location, setLocation] = useState(null);
 
-  const takePhoto = async () => {
-    const picture = await camera.takePictureAsync();
-    const location = await Location.getCurrentPositionAsync();
-    console.log("location", location);
-    console.log("HYUGTYFTD");
-    setPhoto(picture.uri);
-    console.log("photo", photo);
-  };
+  // const takePhoto = async () => {
+  //   const picture = await camera.takePictureAsync();
+  //   const location = await Location.getCurrentPositionAsync();
+  //   console.log("location", location);
+  //   console.log("HYUGTYFTD");
+  //   setPhoto(picture.uri);
+  //   console.log("photo", photo);
+  // };
 
-  const sendPhoto = () => {
-    console.log("navigation", navigation);
-    navigation.navigate("Default", { photo });
-  };
+  // const sendPhoto = () => {
+  //   console.log("navigation", navigation);
+  //   navigation.navigate("Default", { photo });
+  // };
+
+  // useEffect(() => {
+  //   (async () => {
+  //     let { status } = await Location.requestPermissionsAsync();
+  //     if (status !== "granted") {
+  //       console.log("Permission to access location was denied");
+  //     }
+  //   })();
+  // }, []);
+    const [hasPermission, setHasPermission] = useState(null);
+  const [cameraRef, setCameraRef] = useState(null);
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestPermissionsAsync();
-      if (status !== "granted") {
-        console.log("Permission to access location was denied");
-      }
+      const { status } = await Camera.requestPermissionsAsync();
+      console.log('statusCam', status);
+      await MediaLibrary.requestPermissionsAsync();
+
+      setHasPermission(status === "granted");
     })();
   }, []);
+
+  // if (hasPermission === null) {
+  //   return <View />;
+  // }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
+    const takePhoto = async () => {
+    if (cameraRef) {
+      let photo = await cameraRef.takePictureAsync();
+    }
+    console.log("photo",photo);
+    // console.log(Camera.takePictureAsync());
+    // console.log('camera->', photo.uri);
+  }
 
   return (
     <>
     <View style={{ flex: 1 }}>
-      <Camera style={styles.camera} ref={setCamera}>
-        {/* {photo && (
+      <Camera style={styles.camera} ref={(ref) => { setCameraRef(ref) }}>
+        {photo && (
           <>
             <View style={styles.snap}>
               <Image
@@ -45,7 +73,7 @@ const AddPost = ({ navigation }) => {
               />
             </View>
           </>
-        )} */}
+        )}
         <TouchableOpacity style={styles.cameraBtn} onPress={takePhoto}>
           <TouchableOpacity
             style={styles.styledBtn}
@@ -53,17 +81,11 @@ const AddPost = ({ navigation }) => {
           ></TouchableOpacity>
         </TouchableOpacity>
       </Camera>
-      <View style={{ alignItems: "center", marginTop: 10 }}>
-        <TouchableOpacity style={styles.sendDtn} onPress={sendPhoto}>
-          {/* <MaterialIcons
-            name="done"
-            size={40}
-            color="black"
-            onPress={sendPhoto}
-          /> */}
+      {/* <View style={{ alignItems: "center", marginTop: 10 }}>
+        <TouchableOpacity style={styles.sendBtn} onPress={sendPhoto}>
           <Text style={styles.sendBtnText}>Send</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
     </>
   );
@@ -94,7 +116,7 @@ const styles = StyleSheet.create({
     height: 35,
     borderRadius: 50,
   },
-  sendDtn: {
+  sendBtn: {
     borderColor: "#ccdaeb",
     borderWidth: 3,
     width: 300,
