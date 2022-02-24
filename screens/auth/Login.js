@@ -87,6 +87,8 @@ export default function Login({ navigation }) {
                 placeholder="PASSWORD"
                 placeholderTextColor="#DCDCDW"
               />
+
+              
             </View>
             <TouchableOpacity
               style={styles.button}
